@@ -28,11 +28,11 @@ pipeline {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
-            angular.push("${env.BUILD_ID}")
+            angular.push(env.BUILD_ID)
             angular.push("latest")
           }
           docker.withRegistry( '', registryCredential ) {
-            express.push("${env.BUILD_ID}")
+            express.push(env.BUILD_ID)
             express.push("latest")
           }		
         }
