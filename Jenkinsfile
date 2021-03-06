@@ -3,6 +3,8 @@ pipeline {
     registry1 = "aminejlizi/my-image-angular"
     registry2 = "aminejlizi/my-image-express"
     registryCredential = 'dockerhub'
+    angular = ''
+    express = ''
 
   }
   agent any
