@@ -38,8 +38,8 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi my-image-angular"
-        sh "docker rmi my-image-express"
+        sh "docker rmi " + registry1
+        sh "docker rmi " + registry2
       }
     }
   }
