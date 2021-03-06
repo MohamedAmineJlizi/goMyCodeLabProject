@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "aminejlizi/docker_lab"
-    registryCredential = 'dockerhub'
+    registryCredential = "dockerhub"
 
   }
   agent any
@@ -21,17 +21,17 @@ pipeline {
       }
     }
 	
-    stage('Deploy Image') {
+    stage('Deploy images') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
+          docker.withRegistry( registry, registryCredential ) {
             angular.push()
             express.push()
           }
         }
       }
     }
-    stage('Remove Unused docker image') {
+    stage('Remove unused docker images') {
       steps{
         sh "docker rmi my-image-angular"
         sh "docker rmi my-image-express"
