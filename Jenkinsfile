@@ -8,12 +8,16 @@ pipeline {
   stages {
     stage('Building angular image') {
       steps{
-        def angular = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile .")
+        script {
+          def angular = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile .")
+        }
       }
     }
     stage('Building express image') {
       steps{
-        def express = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/express-server/Dockerfile .")
+        script {
+          def express = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/express-server/Dockerfile .")
+        }
       }
     }
   }
