@@ -1,27 +1,24 @@
 pipeline {
-	// Equivalent to "docker build -f Dockerfile_angular -t angularImg .
-	dockerfile {
-		filename 'Dockerfile_angular'
-		dir 'angular-app'
-		additionalBuildArgs '-t angularImg'
-	}
+  environment {
+    angularRegistry = "angular-app"
+    expressRegistry = "express-server"
 
-	environment {
-		imagename1 = "expressImg"
-		imagename1 = "angularImg"
-		dockerImage1 = ''
-		dockerImage2 = ''
-	}
-	
-	agent any
-	
-	stages {
-		stage('Building angular image') {
-			steps{
-				script {
-					dockerImage1 = docker.build imagename1
-				}
-			}
-		}
-	}
+  }
+  agent any
+  stages {
+    stage('Building angular image') {
+      steps{
+        script {
+          docker.build angularRegistry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Building express image') {
+      steps{
+        script {
+          docker.build expressRegistry + ":$BUILD_NUMBER"
+        }
+      }
+    }	
+  }
 }
