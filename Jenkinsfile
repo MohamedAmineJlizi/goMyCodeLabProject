@@ -40,8 +40,8 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi "+registry1+":${env.BUILD_ID}"
-        sh "docker rmi "+registry2+":${env.BUILD_ID}"
+        sh "docker rmi "+registry1+":"+env.BUILD_ID
+        sh "docker rmi "+registry2+":"+env.BUILD_ID
       }
     }
   }
