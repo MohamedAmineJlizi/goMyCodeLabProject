@@ -4,7 +4,7 @@ FROM node:10-alpine as build-step
 RUN mkdir -p /app
 WORKDIR /app
 # Install app dependencies
-COPY ./package.json .
+COPY ./angular-app/package.json .
 RUN npm install
 # Build app
 COPY . .
