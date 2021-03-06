@@ -24,7 +24,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( registry, registryCredential ) {
+          docker.withRegistry( '', registryCredential ) {
             angular.push()
             express.push()
           }
