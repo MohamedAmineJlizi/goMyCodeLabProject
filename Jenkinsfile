@@ -12,14 +12,14 @@ pipeline {
     stage('Building angular image') {
       steps{
         script {
-          def angular = docker.build(registry1+":${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile .")
+          angular = docker.build(registry1+":${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile .")
         }
       }
     }
     stage('Building express image') {
       steps{
         script {
-          def express = docker.build(registry2+":${env.BUILD_ID}","-f ${env.WORKSPACE}/express-server/Dockerfile .")
+          express = docker.build(registry2+":${env.BUILD_ID}","-f ${env.WORKSPACE}/express-server/Dockerfile .")
         }
       }
     }
@@ -27,10 +27,10 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( registry1, registryCredential ) {
+          docker.withRegistry( '', registryCredential ) {
             angular.push()
           }
-          docker.withRegistry( registry2, registryCredential ) {
+          docker.withRegistry( '', registryCredential ) {
             express.push()
           }		
         }
