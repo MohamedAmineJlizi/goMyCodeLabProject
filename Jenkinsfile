@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "aminejlizi/docker_lab"
-	registryCredential = 'dockerhub'
+    registryCredential = 'dockerhub'
 
   }
   agent any
