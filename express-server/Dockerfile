@@ -6,6 +6,6 @@ WORKDIR /app
 COPY ./express-server/package.json .
 RUN npm install
 # Bundle app source
-COPY ./express-server .
+COPY ./express-server/ .
 EXPOSE 3000
 CMD [ "node", "server.js" ]
