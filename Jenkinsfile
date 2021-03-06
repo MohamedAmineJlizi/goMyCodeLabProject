@@ -1,10 +1,10 @@
 pipeline {
 	// Equivalent to "docker build -f Dockerfile_angular -t angularImg .
-    dockerfile {
-        filename 'Dockerfile_angular'
-        dir 'angular-app'
-        additionalBuildArgs '-t angularImg'
-    }
+	dockerfile {
+		filename 'Dockerfile_angular'
+		dir 'angular-app'
+		additionalBuildArgs '-t angularImg'
+	}
 
 	environment {
 		imagename1 = "expressImg"
