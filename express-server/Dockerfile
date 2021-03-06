@@ -3,7 +3,7 @@ FROM node:10-alpine
 RUN mkdir -p /app
 WORKDIR /app
 # Install app dependencies
-COPY ./package.json .
+COPY ./express-server/package.json .
 RUN npm install
 # Bundle app source
 COPY . .
