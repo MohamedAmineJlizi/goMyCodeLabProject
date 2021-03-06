@@ -8,21 +8,13 @@ pipeline {
   stages {
     stage('Building angular image') {
       steps{
-	    dir('/angular-app/'){
-          script {
-            docker.build registry + ":$BUILD_NUMBER"
-          }
-		}
+        def angular = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile registry + :$BUILD_NUMBER"")
       }
     }
     stage('Building express image') {
       steps{
-	    dir('/express-server/'){
-          script {
-            docker.build registry + ":$BUILD_NUMBER"
-          }
-		}
+        def express = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/express-server/Dockerfile registry + :$BUILD_NUMBER")
       }
-    }	
+    }
   }
 }
