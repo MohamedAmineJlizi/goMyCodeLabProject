@@ -7,7 +7,7 @@ WORKDIR /app
 COPY ./angular-app/package.json .
 RUN npm install
 # Build app
-COPY . .
+COPY ./angular-app/ .
 RUN npm run build --prod
 
 # Stage 2
