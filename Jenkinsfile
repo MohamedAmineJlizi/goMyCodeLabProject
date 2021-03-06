@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "aminejlizi/docker_lab"
+    registry = "https://api.github.com/aminejlizi/docker_lab"
     registryCredential = "dockerhub"
 
   }
