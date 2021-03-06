@@ -1,7 +1,8 @@
 pipeline {
   environment {
-    registry = "aminejlizi"
-	registryCredential = 'dockerhub'
+    registry1 = "aminejlizi/my-image-angular"
+    registry2 = "aminejlizi/my-image-express"
+    registryCredential = 'dockerhub'
 
   }
   agent any
@@ -9,14 +10,14 @@ pipeline {
     stage('Building angular image') {
       steps{
         script {
-          def angular = docker.build(registry,"/my-image-angular:${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile .")
+          def angular = docker.build(registry1+":${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile .")
         }
       }
     }
     stage('Building express image') {
       steps{
         script {
-          def express = docker.build(registry,"/my-image-express:${env.BUILD_ID}","-f ${env.WORKSPACE}/express-server/Dockerfile .")
+          def express = docker.build(registry2+":${env.BUILD_ID}","-f ${env.WORKSPACE}/express-server/Dockerfile .")
         }
       }
     }
@@ -24,7 +25,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( registry, registryCredential ) {
+          docker.withRegistry( '', registryCredential ) {
             angular.push()
             express.push()
           }
