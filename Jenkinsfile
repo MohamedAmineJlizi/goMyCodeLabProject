@@ -1,23 +1,27 @@
 pipeline {
   environment {
-    angularRegistry = "angular-app"
-    expressRegistry = "express-server"
+    registry = "docker_lab"
+	registryCredential = 'dockerhub'
 
   }
   agent any
   stages {
     stage('Building angular image') {
       steps{
-        script {
-          docker.build angularRegistry + ":$BUILD_NUMBER"
-        }
+	    dir('/angular-app/'){
+          script {
+            docker.build registry + ":$BUILD_NUMBER"
+          }
+		}
       }
     }
     stage('Building express image') {
       steps{
-        script {
-          docker.build expressRegistry + ":$BUILD_NUMBER"
-        }
+	    dir('/express-server/'){
+          script {
+            docker.build registry + ":$BUILD_NUMBER"
+          }
+		}
       }
     }	
   }
