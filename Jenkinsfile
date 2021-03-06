@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Building angular image') {
       steps{
-        def angular = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile registry + :$BUILD_NUMBER"")
+        def angular = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/angular-app/Dockerfile registry + :$BUILD_NUMBER")
       }
     }
     stage('Building express image') {
